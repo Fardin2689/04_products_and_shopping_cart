@@ -1,3 +1,4 @@
+import { Button } from '@material-ui/core';
 import './item.css';
 
 function Item({ item }) {
@@ -25,8 +26,8 @@ function Item({ item }) {
         </div>
       </div>
       <div className="action">
-        <button className="bt">Delete</button>
-        <button className="bt">Edit</button>
+        <Button className="bt">Delete</Button>
+        <Button className="bt">Edit</Button>
       </div>
     </div>
   );

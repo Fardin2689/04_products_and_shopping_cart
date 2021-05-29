@@ -19,78 +19,57 @@ const items = [
     imageUrl: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
     price: 35,
   },
-  {
-    id: 4,
-    name: 'Grey Brim',
-    imageUrl: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
-    price: 25,
-  },
-  {
-    id: 5,
-    name: 'Green Beanie',
-    imageUrl: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
-    price: 18,
-  },
-  {
-    id: 6,
-    name: 'Palm Tree Cap',
-    imageUrl: 'https://i.ibb.co/rKBDvJX/palm-tree-cap.png',
-    price: 14,
-  },
-  {
-    id: 7,
-    name: 'Red Beanie',
-    imageUrl: 'https://i.ibb.co/bLB646Z/red-beanie.png',
-    price: 18,
-  },
-  {
-    id: 8,
-    name: 'Wolf Cap',
-    imageUrl: 'https://i.ibb.co/1f2nWMM/wolf-cap.png',
-    price: 14,
-  },
-  {
-    id: 9,
-    name: 'Blue Snapback',
-    imageUrl: 'https://i.ibb.co/X2VJP2W/blue-snapback.png',
-    price: 16,
-  },
+  //   {
+  //     id: 4,
+  //     name: 'Grey Brim',
+  //     imageUrl: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
+  //     price: 25,
+  //   },
+  //   {
+  //     id: 5,
+  //     name: 'Green Beanie',
+  //     imageUrl: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
+  //     price: 18,
+  //   },
+  //   {
+  //     id: 6,
+  //     name: 'Palm Tree Cap',
+  //     imageUrl: 'https://i.ibb.co/rKBDvJX/palm-tree-cap.png',
+  //     price: 14,
+  //   },
+  //   {
+  //     id: 7,
+  //     name: 'Red Beanie',
+  //     imageUrl: 'https://i.ibb.co/bLB646Z/red-beanie.png',
+  //     price: 18,
+  //   },
+  //   {
+  //     id: 8,
+  //     name: 'Wolf Cap',
+  //     imageUrl: 'https://i.ibb.co/1f2nWMM/wolf-cap.png',
+  //     price: 14,
+  //   },
+  //   {
+  //     id: 9,
+  //     name: 'Blue Snapback',
+  //     imageUrl: 'https://i.ibb.co/X2VJP2W/blue-snapback.png',
+  //     price: 16,
+  //   },
 ];
 function ItemList() {
   return (
-    <div
-      style={{
-        height: '100vh',
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        padding: 20,
-        overflow: 'hidden',
-      }}
+    <Grid
+      container
+      justify="center"
+      spacing={2}
+      style={{ height: '100%', width: '100%', overflow: 'auto', margin: 0 }}
     >
-      <Grid
-        container
-        justify="center"
-        alignItems="center"
-        spacing={2}
-        style={{ height: '100%', width: '100%', overflow: 'auto' }}
-      >
-        {items.map((item) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            lg={3}
-            container
-            justify="center"
-            key={item.id}
-          >
-            <Item item={item} />
-          </Grid>
-        ))}
-      </Grid>
-    </div>
+      {items.map((item) => (
+        <Grid key={item.id} item xs={12} sm={6} md={4} lg={3}>
+          <Item item={item} />
+        </Grid>
+      ))}
+    </Grid>
   );
 }
 
