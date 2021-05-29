@@ -1,5 +1,7 @@
+import ItemList from './components/ItemList';
+
 function App() {
-  return <div>New Project</div>;
+  return <ItemList />;
 }
 
 export default App;
