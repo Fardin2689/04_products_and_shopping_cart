@@ -19,8 +19,6 @@ function ItemDetails() {
         flexDirection: 'column',
         height: '100%',
         width: '100%',
-        padding: 10,
-        overflow: 'auto',
       }}
     >
       <div className="title">

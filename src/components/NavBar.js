@@ -124,7 +124,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
           <IconButton
             edge="start"

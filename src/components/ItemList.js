@@ -62,7 +62,7 @@ function ItemList() {
       container
       justify="center"
       spacing={2}
-      style={{ height: '100%', width: '100%', overflow: 'auto', margin: 0 }}
+      style={{ height: '100%', width: '100%', margin: 0 }}
     >
       {items.map((item) => (
         <Grid key={item.id} item xs={12} sm={6} md={4} lg={3}>
