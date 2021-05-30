@@ -1,10 +1,15 @@
 import { Button } from '@material-ui/core';
+import noImage from './unnamed.png';
 import './item.css';
 
 function Item({ item }) {
   return (
     <div className="container">
       <div className="image-cover">
+        <div
+          className="noImage"
+          style={{ backgroundImage: `url(${noImage})` }}
+        />
         <div
           className="image"
           style={{ backgroundImage: `url(${item.imageUrl})` }}

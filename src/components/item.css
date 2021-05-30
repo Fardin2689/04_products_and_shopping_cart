@@ -10,6 +10,15 @@
 }
 .image-cover {
   overflow: hidden;
+  position: relative;
+}
+.noImage {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  height: 230px;
+  width: 100%;
+  z-index: -1;
 }
 .image {
   background-size: cover;
