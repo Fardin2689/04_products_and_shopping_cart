@@ -48,7 +48,9 @@
   height: 45px;
   font-weight: 500;
 }
-
+.price-status-box {
+  margin: 0.3rem 0 0.5rem;
+}
 .status {
   display: flex;
   align-items: center;

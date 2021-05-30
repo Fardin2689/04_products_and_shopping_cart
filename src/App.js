@@ -1,5 +1,8 @@
-import ItemList from './components/ItemList';
 import NavBar from './components/NavBar';
+import { Router } from '@reach/router';
+import ItemList from './components/ItemList';
+import ItemDetails from './pages/ItemDetails';
+
 function App() {
   return (
     <div
@@ -11,7 +14,10 @@ function App() {
       }}
     >
       <NavBar />
-      <ItemList />
+      <Router style={{ height: '100%' }}>
+        <ItemList path="/" />
+        <ItemDetails path="details" />
+      </Router>
     </div>
   );
 }
