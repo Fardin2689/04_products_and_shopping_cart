@@ -11,6 +11,18 @@ const item = {
   imageUrl4: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
   price: 25,
 };
+
+const ThumbImage = ({ url }) => (
+  <li className="gallery-item">
+    <div
+      className="thumb"
+      style={{
+        backgroundImage: `url(${url})`,
+      }}
+    />
+  </li>
+);
+
 function ItemDetails() {
   return (
     <div
@@ -37,38 +49,10 @@ function ItemDetails() {
         <Grid item xs={12} sm={6}>
           <div className="info shadow">
             <ul className="gallery">
-              <li className="gallery-item">
-                <div
-                  className="thumb"
-                  style={{
-                    backgroundImage: `url(${item.imageUrl1})`,
-                  }}
-                />
-              </li>
-              <li className="gallery-item">
-                <div
-                  className="thumb"
-                  style={{
-                    backgroundImage: `url(${item.imageUrl2})`,
-                  }}
-                />
-              </li>
-              <li className="gallery-item">
-                <div
-                  className="thumb"
-                  style={{
-                    backgroundImage: `url(${item.imageUrl3})`,
-                  }}
-                />
-              </li>
-              <li className="gallery-item">
-                <div
-                  className="thumb"
-                  style={{
-                    backgroundImage: `url(${item.imageUrl4})`,
-                  }}
-                />
-              </li>
+              <ThumbImage url={item.imageUrl1} />
+              <ThumbImage url={item.imageUrl2} />
+              <ThumbImage url={item.imageUrl3} />
+              <ThumbImage url={item.imageUrl4} />
             </ul>
             <div style={{ flexGrow: 1 }}></div>
             <PriceBox />

@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core';
-import noImage from './unnamed.png';
+import noImage from '../asset/notLoading.png';
 import './item.css';
 
 function Item({ item }) {

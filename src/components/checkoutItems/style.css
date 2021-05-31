@@ -1,0 +1,154 @@
+.shadow {
+  border-radius: 0.4rem;
+  background-color: white;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+.c_item-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+}
+.c_item {
+  /* height: 200px; */
+  display: flex;
+  flex-direction: row;
+}
+.c_thumb-wrapper {
+  height: 100%;
+  width: 25%;
+  min-width: 150px;
+  /* padding: 1rem 0.5rem; */
+  display: flex;
+  justify-content: center;
+}
+.c_thumb-wrapper > div {
+  height: 120px;
+  width: 120px;
+  border-radius: 0.3rem;
+  background-position: center;
+  background-size: cover;
+}
+.c_detail {
+  height: 100%;
+  width: 75%;
+  /* padding: 1rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.c_item-title {
+  font-size: 1.143rem;
+  color: #3f3f3f;
+  margin-bottom: 10px;
+  margin-top: 6px;
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+}
+
+.c_action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.c_quantity {
+  width: 100px;
+  height: 40px;
+  display: flex;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  color: #0fabc6;
+  font-size: 15px;
+  font-size: 1.071rem;
+  line-height: 1.467;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.c_quantity button {
+  border: none;
+  color: #0fabc6;
+  background-color: #fff;
+  cursor: pointer;
+  width: 33%;
+  text-align: center;
+  height: 100%;
+  border-radius: 8px;
+  font-size: 1.286rem;
+}
+
+.c_quantity-number {
+  width: 33%;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.071rem;
+  line-height: 15px;
+}
+.c_price {
+  text-align: right;
+  color: #000;
+  font-size: 1.214rem;
+  flex-grow: 1;
+}
+.c_discount {
+  width: 100%;
+  text-align: right;
+  font-size: 1rem;
+  line-height: 10px;
+  color: #ef394e;
+}
+
+.c_available-number {
+  margin-top: 1rem;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.c_bill-box {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c_bill-price-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 6px 0;
+  color: #777;
+}
+
+.c_bill-price-title {
+  font-size: 0.929rem;
+  line-height: 1.692;
+  display: flex;
+}
+
+.c_bill-price-number {
+  font-size: 15px;
+  font-size: 1.071rem;
+  line-height: 1.467;
+}
+
+.c_bill-price-number-discount {
+  font-size: 15px;
+  font-size: 1.071rem;
+  line-height: 1.467;
+  color: #ef394e;
+}
+.c_bill-total {
+  border-top: 1px solid #eee;
+  font-weight: 700 !important;
+  color: #000 !important;
+  padding-top: 8px;
+}
+.c_bt {
+  width: 100%;
+  margin: 1rem 0;
+}

@@ -3,7 +3,7 @@ import { Router } from '@reach/router';
 import ItemList from './components/ItemList';
 import ItemDetails from './pages/ItemDetails';
 import CheckoutList from './pages/CheckoutList';
-
+import Home from './pages/Home';
 function App() {
   return (
     <div
@@ -25,6 +25,7 @@ function App() {
           margin: 'auto',
         }}
       >
+        <Home path="/" />
         <ItemList path="shopping" />
         <ItemDetails path="details" />
         <CheckoutList path="checkout" />

@@ -1,4 +1,4 @@
-import { Box, Button, Card, Grid, IconButton } from '@material-ui/core';
+import { Box, Button, Grid, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import './itemDetails.css';

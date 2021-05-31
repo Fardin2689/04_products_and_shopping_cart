@@ -10,7 +10,7 @@ const items = [
   {
     id: 2,
     name: 'Blue Beanie',
-    imageUrl: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
+    imageUrl: 'https://ib.co/ypkgK0X/blue-beanie.png',
     price: 18,
   },
   {
