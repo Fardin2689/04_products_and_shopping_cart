@@ -2,7 +2,7 @@ import { Button } from '@material-ui/core';
 import noImage from '../../asset/notLoading.png';
 import './item.css';
 
-function Item({ item, adminPanel }) {
+export default function Item({ item, adminPanel }) {
   const { id, imageUrl, title, aNumber, discountP, price } = item;
   const finalPrice = price * ((100 - discountP) / 100);
   return (
@@ -51,5 +51,3 @@ function Item({ item, adminPanel }) {
     </div>
   );
 }
-
-export default Item;

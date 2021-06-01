@@ -1,5 +1,5 @@
 import Grid from '@material-ui/core/Grid';
-import PItem from '../components/productItem/index';
+import PItem from '../components/productItem';
 
 const items = [
   {

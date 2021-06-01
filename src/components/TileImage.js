@@ -33,9 +33,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PostItem = ({ url, id, upload }) => {
+const PostItem = ({ url, upload, handleDelGal }) => {
   const classes = useStyles();
 
+  const handleDeleteImg = () => {
+    handleDelGal(url);
+  };
   return (
     <div className={classes.thumbWrapper}>
       <div
@@ -47,7 +50,7 @@ const PostItem = ({ url, id, upload }) => {
       >
         {upload && (
           <div className={classes.thumbOverlay}>
-            <IconButton onClick={() => console.log('delete -> ', url)}>
+            <IconButton onClick={handleDeleteImg}>
               <DeleteIcon />
             </IconButton>
           </div>
