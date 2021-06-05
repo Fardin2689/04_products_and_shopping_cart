@@ -13,8 +13,9 @@ export class ProductRepository extends Repository<Product> {
     prod.price = price;
     prod.discountP = discountP;
     prod.aNumber = aNumber;
-    prod.sNamber = 0;
+    prod.sNumber = 0;
     prod.uploaded = uploaded;
+
     thumbs.forEach((el, ind) => {
       if (ind === 0) prod.mainThumb = el;
       else prod[`thumb${ind}`] = el;
@@ -23,7 +24,6 @@ export class ProductRepository extends Repository<Product> {
       if (ind === 0) prod.mainImg = el.buffer;
       else prod[`img${ind}`] = el.buffer;
     });
-
     await prod.save();
     return prod;
   }
