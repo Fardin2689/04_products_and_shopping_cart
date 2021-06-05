@@ -92,6 +92,10 @@ function Home({ addToCart, loggedin, from }) {
     getData();
     // eslint-disable-next-line
   }, []);
+
+  const deleteItem = (id) => {
+    setData(data.filter((el) => el.id !== id));
+  };
   return (
     <Grid container justify="center" spacing={2} style={{ marginTop: 5 }}>
       {data.map((item) => (
@@ -100,6 +104,7 @@ function Home({ addToCart, loggedin, from }) {
             item={item}
             adminPanel={loggedin && from === 'admin'}
             addToCart={addToCart}
+            deleteItem={deleteItem}
           />
         </Grid>
       ))}

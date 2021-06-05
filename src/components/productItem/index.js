@@ -1,12 +1,18 @@
 import { Button } from '@material-ui/core';
-import { useNavigate } from '@reach/router';
+import { navigate } from '@reach/router';
 import noImage from '../../asset/notLoading.png';
 import PriceBox from '../PriceBox';
 import './item.css';
+import useApi from '../../hooks/useApi';
+import productApi from '../../api/product';
 
-export default function Item({ item, adminPanel, addToCart }) {
-  const navigate = useNavigate();
+export default function Item({ item, adminPanel, addToCart, deleteItem }) {
   const { id, aNumber, mainThumb } = item;
+  const delApi = useApi(productApi.deleteProduct);
+  const handleDeleteItem = async () => {
+    const res = await delApi.request(id);
+    if (res.ok) deleteItem(id);
+  };
   return (
     <div className="p_container">
       <div className="p_item-cover" onClick={() => navigate(`details/${id}`)}>
@@ -26,7 +32,9 @@ export default function Item({ item, adminPanel, addToCart }) {
       <div className="p_action">
         {adminPanel ? (
           <>
-            <Button className="p_bt">Delete</Button>
+            <Button className="p_bt" onClick={handleDeleteItem}>
+              Delete
+            </Button>
             <Button className="p_bt">Edit</Button>
           </>
         ) : (
