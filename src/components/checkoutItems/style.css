@@ -9,6 +9,10 @@
   flex-direction: column;
   width: 100%;
   padding: 1rem;
+  border-top: 1px solid #eaeaea;
+}
+.c_item-box:first-child {
+  border-top: none;
 }
 .c_item {
   /* height: 200px; */
@@ -57,7 +61,7 @@
   width: 100px;
   height: 40px;
   display: flex;
-  border: 1px solid #eee;
+  /* border: 1px solid #eee; */
   border-radius: 8px;
   color: #0fabc6;
   font-size: 15px;
@@ -68,6 +72,7 @@
 }
 
 .c_quantity button {
+  min-width: 0;
   border: none;
   color: #0fabc6;
   background-color: #fff;
@@ -150,5 +155,12 @@
 }
 .c_bt {
   width: 100%;
-  margin: 1rem 0;
+  margin: 1rem 0 0;
+}
+
+.c_link {
+  margin: 0.5rem 0;
+  text-decoration: none;
+  text-align: center;
+  color: #000;
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDropzone } from 'react-dropzone';
 import addPic from '../../asset/addPic.png';
+import { imageResizer } from '../../imageHelper';
 
 const useStyles = makeStyles((theme) => ({
   mainImage: {
@@ -30,7 +31,12 @@ const MainImgPicker = ({ setMainImg }) => {
   const onDrop = (acceptedFiles) => {
     const blob = URL.createObjectURL(acceptedFiles[0]);
     setImg(blob);
-    setMainImg(blob);
+
+    imageResizer(acceptedFiles[0]).then((uri) => {
+      setMainImg({ file: acceptedFiles[0], uri });
+    });
+
+    setMainImg(acceptedFiles[0]);
   };
 
   const { getRootProps, getInputProps } = useDropzone({

@@ -39,7 +39,7 @@
   transition: transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 }
 .p_details {
-  height: auto;
+  height: 100%;
   padding: 0.7rem;
   display: flex;
   flex-direction: column;
@@ -48,10 +48,17 @@
 .p_title {
   display: block;
   overflow: hidden;
-  font-size: 1rem;
+  font-size: 1.3rem;
   line-height: 22px;
   height: 45px;
   font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.p_moreInfo {
+  height: auto;
+  flex-grow: 1;
+  border: 1px dashed gray;
+  border-radius: 0.4rem;
 }
 .p_price-status-box {
   margin: 0.3rem 0 0.5rem;
@@ -65,7 +72,7 @@
   line-height: 3;
 }
 .p_price-box {
-  height: 50px;
+  height: 55px;
   display: flex;
   flex-direction: column;
   justify-content: center;

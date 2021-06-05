@@ -1,43 +1,73 @@
 import { Router } from '@reach/router';
 import NavBar from './components/NavBar';
-import ItemList from './components/ItemList';
-import ItemDetails from './pages/ItemDetails';
-import CheckoutList from './pages/CheckoutList';
+import Details from './pages/Details';
+import Checkout from './pages/CheckoutList';
 import Home from './pages/Home';
 import PostItem from './pages/PostItem';
 import { Container } from '@material-ui/core';
+import { useState } from 'react';
 
 function App() {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (item) => {
+    const find = cart.find((el) => el.id === item.id);
+    if (find) {
+      const newCart = cart.map((el) => {
+        if (el.id === item.id) {
+          return { ...el, qty: el.aNumber > el.qty ? el.qty + 1 : el.qty };
+        } else return el;
+      });
+      setCart(newCart);
+    } else setCart([...cart, { ...item, qty: 1 }]);
+  };
+
+  const handleDelItem = (id) => {
+    setCart(cart.filter((el) => el.id !== id));
+  };
+
+  const handleClearCart = () => {
+    setCart([]);
+  };
+
+  const handleAddQty = (id) => {
+    const newCart = cart.map((el) => {
+      if (el.id === id) {
+        return { ...el, qty: el.qty + 1 };
+      } else return el;
+    });
+    setCart(newCart);
+  };
+
+  const handleRemQty = (id) => {
+    const newCart = cart.map((el) => {
+      if (el.id === id) {
+        return { ...el, qty: el.qty - 1 };
+      } else return el;
+    });
+    setCart(newCart);
+  };
+
   return (
     <div
       style={{
         height: '100vh',
         overflow: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        // backgroundColor: '#f5f5f5',
       }}
     >
-      <NavBar />
-      <Container
-        component="main"
-        maxWidth="lg"
-        style={{
-          width: '100%',
-          height: '100%',
-        }}
-      >
-        <Router
-          style={{
-            width: '100%',
-            height: '100%',
-            // padding: 10,
-          }}
-        >
-          <Home path="/" />
-          <ItemList path="shopping" />
-          <ItemDetails path="details" />
-          <CheckoutList path="checkout" />
+      <NavBar cart={cart} />
+      <Container component="main" maxWidth="lg">
+        <Router>
+          <Home path="/" addToCart={addToCart} />
+          <Details path="details/:id" addToCart={addToCart} />
+          <Checkout
+            path="checkout"
+            cart={cart}
+            handleAddQty={handleAddQty}
+            handleRemQty={handleRemQty}
+            handleDelItem={handleDelItem}
+            handleClearCart={handleClearCart}
+          />
           <PostItem path="add" />
         </Router>
       </Container>

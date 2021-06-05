@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '8px',
     border: '1px solid #ccc',
     margin: '0 5px',
+    cursor: 'pointer',
   },
   thumbOverlay: {
     backgroundColor: 'white',
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PostItem = ({ url, upload, handleDelGal }) => {
+const PostItem = ({ url, upload, handleDelGal, handleView }) => {
   const classes = useStyles();
 
   const handleDeleteImg = () => {
@@ -42,7 +43,7 @@ const PostItem = ({ url, upload, handleDelGal }) => {
   return (
     <div className={classes.thumbWrapper}>
       <div
-        onClick={() => (upload ? null : console.log('view -> ', url))}
+        onClick={() => (upload ? null : handleView(url))}
         className={classes.thumbImage}
         style={{
           backgroundImage: `url(${url})`,

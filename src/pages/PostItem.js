@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 // import { useSnackbar } from 'notistack';
 // import { useNavigate } from '@reach/router';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
+import { Link, navigate } from '@reach/router';
 
 import FormikForm from '../components/form/FormikForm';
 import CTextField from '../components/form/CustomTextInput';
@@ -12,25 +12,12 @@ import TileImage from '../components/TileImage';
 import MainImgPicker from '../components/form/MainImgPicker';
 import GalleryImgPicker from '../components/form/GalleryImgPicker';
 import { useState } from 'react';
-
-// import authApi from '../api/auth';
-// import useApi from '../hooks/useApi';
+import { imageResizer } from '../imageHelper';
+import productApi from '../api/product';
+import useApi from '../hooks/useApi';
+import CuContainer from '../components/CuContainer';
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    margin: 'auto',
-    maxWidth: 960,
-    marginTop: theme.spacing(8),
-    [theme.breakpoints.down('sm')]: {
-      maxWidth: 800,
-    },
-    [theme.breakpoints.down('xs')]: {
-      marginTop: theme.spacing(1),
-    },
-  },
   galleryBox: {
     height: '130px',
     width: '100%',
@@ -43,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Footer = () => (
-  <Link href="/" variant="body2">
+  <Link to="/" className="c_link">
     Go to Shopping Page
   </Link>
 );
@@ -53,11 +40,16 @@ const PostItem = () => {
   const [mainImg, setMainImg] = useState(null);
   const [gallery, setGallery] = useState([]);
   const handleGallery = (file) => {
-    setGallery([...gallery, URL.createObjectURL(file)]);
+    imageResizer(file).then((uri) => {
+      setGallery([
+        ...gallery,
+        { file, uri, preview: URL.createObjectURL(file) },
+      ]);
+    });
   };
   //   const navigate = useNavigate();
   //   const { enqueueSnackbar } = useSnackbar();
-  //   const sendApi = useApi(authApi.signUp);
+  const sendApi = useApi(productApi.addProduct);
 
   const initialValues = {
     title: '',
@@ -65,10 +57,10 @@ const PostItem = () => {
     price: '',
     discountP: 0,
   };
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     console.log(values, mainImg, gallery);
-    // const result = await sendApi.request(values);
-    // if (!result.ok)
+    const res = await sendApi.request(values, mainImg, gallery);
+    if (res.ok) navigate('/');
     //   return enqueueSnackbar(result.problem, {variant: 'error',});
     // else {
     //   enqueueSnackbar('User Created Successfully', { variant: 'success' });
@@ -76,7 +68,7 @@ const PostItem = () => {
     // }
   };
   const handleDelGal = (url) => {
-    setGallery(gallery.filter((item) => item !== url));
+    setGallery(gallery.filter((item) => item.preview !== url));
     URL.revokeObjectURL(url);
   };
   const validationSchema = Yup.object({
@@ -96,10 +88,11 @@ const PostItem = () => {
       .min(0, 'Must be between 0 and 100')
       .max(100, 'Must be between 0 and 100')
       .required('Required'),
+    details: Yup.string(),
   });
 
   return (
-    <div className={classes.container}>
+    <CuContainer>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={7} md={6}>
           <Box width="100%">
@@ -108,7 +101,7 @@ const PostItem = () => {
               {gallery.map((item, ind) => (
                 <TileImage
                   key={ind}
-                  url={item}
+                  url={item.preview}
                   upload={true}
                   handleDelGal={handleDelGal}
                 />
@@ -150,11 +143,20 @@ const PostItem = () => {
                   type="number"
                 />
               </Grid>
+              <Grid item xs={12}>
+                <CTextField
+                  label="Details"
+                  name="details"
+                  type="text"
+                  multiline
+                  rows={4}
+                />
+              </Grid>
             </Grid>
           </FormikForm>
         </Grid>
       </Grid>
-    </div>
+    </CuContainer>
   );
 };
 

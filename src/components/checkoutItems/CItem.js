@@ -1,20 +1,30 @@
-import { Box, IconButton } from '@material-ui/core';
+import { Box, Button, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import './style.css';
 
-function CItem({ item, orderNumber, totalDiscount, finalPrice }) {
-  const { imageUrl, title, aNumber } = item;
+function CItem({ item, handleAddQty, handleRemQty, handleDelItem }) {
+  const { id, title, price, aNumber, discountP, mainThumb, qty } = item;
+  const finalPrice = price * (1 - discountP / 100) * qty;
   const detailsBox = (
     <>
       <div className="c_available-number">{`Available Number in Store: ${aNumber}`}</div>
-      <div className="c_discount">{`Discount ${totalDiscount} $`}</div>
+      <div className="c_discount">{`Discount ${
+        price * qty - finalPrice
+      } $`}</div>
       <div className="c_action">
         <div className="c_quantity">
-          <button>+</button>
-          <div className="c_quantity-number">{orderNumber}</div>
-          <button>-</button>
+          <Button disabled={qty === aNumber} onClick={() => handleAddQty(id)}>
+            +
+          </Button>
+          <div className="c_quantity-number">{qty}</div>
+          <Button disabled={qty === 1} onClick={() => handleRemQty(id)}>
+            -
+          </Button>
         </div>
-        <IconButton style={{ marginLeft: 10 }}>
+        <IconButton
+          style={{ marginLeft: 10 }}
+          onClick={() => handleDelItem(id)}
+        >
           <DeleteIcon />
         </IconButton>
         Delete
@@ -24,10 +34,10 @@ function CItem({ item, orderNumber, totalDiscount, finalPrice }) {
   );
 
   return (
-    <div className="c_item-box shadow">
+    <div className="c_item-box">
       <div className="c_item">
         <div className="c_thumb-wrapper">
-          <div style={{ backgroundImage: `url(${imageUrl})` }} />
+          <div style={{ backgroundImage: `url(${mainThumb})` }} />
         </div>
         <div className="c_detail">
           <div className="c_item-title ">{title}</div>
