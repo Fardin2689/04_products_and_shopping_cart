@@ -9,6 +9,7 @@ import { useState } from 'react';
 
 function App() {
   const [cart, setCart] = useState([]);
+  const [loggedin, setLogedin] = useState(false);
 
   const addToCart = (item) => {
     const find = cart.find((el) => el.id === item.id);
@@ -55,10 +56,10 @@ function App() {
         overflow: 'auto',
       }}
     >
-      <NavBar cart={cart} />
+      <NavBar cart={cart} loggedin={loggedin} setLogedin={setLogedin} />
       <Container component="main" maxWidth="lg">
         <Router>
-          <Home path="/" addToCart={addToCart} />
+          <Home path="/*from" addToCart={addToCart} loggedin={loggedin} />
           <Details path="details/:id" addToCart={addToCart} />
           <Checkout
             path="checkout"

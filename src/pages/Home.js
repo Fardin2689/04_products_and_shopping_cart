@@ -79,14 +79,13 @@ import useApi from '../hooks/useApi';
 //     discountP: 1,
 //   },
 // ];
-function Home({ addToCart }) {
+function Home({ addToCart, loggedin, from }) {
   const [data, setData] = useState([]);
   const sendApi = useApi(productApi.getProducts);
   const getData = async () => {
     const res = await sendApi.request();
     if (res.ok) {
       setData(res.data);
-      console.log(res);
     }
   };
   useEffect(() => {
@@ -97,7 +96,11 @@ function Home({ addToCart }) {
     <Grid container justify="center" spacing={2} style={{ marginTop: 5 }}>
       {data.map((item) => (
         <Grid key={item.id} item xs={12} sm={6} md={4} lg={3}>
-          <PItem item={item} adminPanel={false} addToCart={addToCart} />
+          <PItem
+            item={item}
+            adminPanel={loggedin && from === 'admin'}
+            addToCart={addToCart}
+          />
         </Grid>
       ))}
     </Grid>

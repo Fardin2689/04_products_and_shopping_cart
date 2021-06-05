@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import Menu from '@material-ui/core/Menu';
 import HomeIcon from '@material-ui/icons/Home';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import SignOutIcon from '@material-ui/icons/PowerSettingsNew';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ProdAddIcon from '@material-ui/icons/PostAdd';
 import { navigate } from '@reach/router';
+import LoginDialog from './LoginDialog';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -28,36 +31,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({ cart }) {
+export default function PrimarySearchAppBar({ cart, loggedin, setLogedin }) {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const isMenuOpen = Boolean(anchorEl);
+  const [openD, setOpenD] = useState(false);
 
   const orderNumber = cart.reduce((acc, curr) => (acc += curr.qty), 0);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
 
   return (
     <>
@@ -77,6 +55,11 @@ export default function PrimarySearchAppBar({ cart }) {
 
           <div className={classes.grow} />
 
+          {loggedin && (
+            <IconButton color="inherit" onClick={() => navigate('/admin')}>
+              <DashboardIcon />
+            </IconButton>
+          )}
           <IconButton color="inherit" onClick={() => navigate('/add')}>
             <ProdAddIcon />
           </IconButton>
@@ -87,16 +70,18 @@ export default function PrimarySearchAppBar({ cart }) {
           </IconButton>
           <IconButton
             edge="end"
-            aria-controls={menuId}
-            aria-haspopup="true"
-            onClick={handleProfileMenuOpen}
+            onClick={() => (loggedin ? setLogedin(false) : setOpenD(true))}
             color="inherit"
           >
-            <AccountCircle />
+            {loggedin ? <SignOutIcon /> : <AccountCircle />}
           </IconButton>
         </Toolbar>
       </AppBar>
-      {renderMenu}
+      <LoginDialog
+        open={openD}
+        handleLogin={() => setLogedin(true)}
+        handleClose={() => setOpenD(false)}
+      />
     </>
   );
 }
