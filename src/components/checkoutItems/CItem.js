@@ -4,13 +4,13 @@ import './style.css';
 
 function CItem({ item, handleAddQty, handleRemQty, handleDelItem }) {
   const { id, title, price, aNumber, discountP, mainThumb, qty } = item;
-  const finalPrice = price * (1 - discountP / 100) * qty;
+  const discount = Math.round(price * (discountP / 100) * qty * 100) / 100;
   const detailsBox = (
     <>
       <div className="c_available-number">{`Available Number in Store: ${aNumber}`}</div>
-      <div className="c_discount">{`Discount ${
-        price * qty - finalPrice
-      } $`}</div>
+      {discountP !== 0 && (
+        <div className="c_discount">{`Discount ${discount} $`}</div>
+      )}
       <div className="c_action">
         <div className="c_quantity">
           <Button disabled={qty === aNumber} onClick={() => handleAddQty(id)}>
@@ -28,7 +28,7 @@ function CItem({ item, handleAddQty, handleRemQty, handleDelItem }) {
           <DeleteIcon />
         </IconButton>
         Delete
-        <div className="c_price">{`${finalPrice} $`}</div>
+        <div className="c_price">{`${price - discount} $`}</div>
       </div>
     </>
   );

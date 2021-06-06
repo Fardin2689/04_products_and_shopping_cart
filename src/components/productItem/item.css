@@ -72,10 +72,10 @@
   line-height: 3;
 }
 .p_price-box {
-  height: 55px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 .p_price-discount-box {
   display: flex;

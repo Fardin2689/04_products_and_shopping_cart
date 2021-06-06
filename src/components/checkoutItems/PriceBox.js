@@ -17,6 +17,7 @@ function PriceBox({ items, handleClearCart }) {
     totalDiscount += price * (discountP / 100) * qty;
   }
   totalDiscount = Math.round(totalDiscount * 100) / 100;
+  const totalDisP = Math.round((totalDiscount * 10000) / totalPrice) / 100;
   const finalPrice = totalPrice - totalDiscount;
 
   const handleBuy = async () => {
@@ -32,10 +33,12 @@ function PriceBox({ items, handleClearCart }) {
         <span className="c_bill-price-title">Total Price</span>
         <span className="c_bill-price-number">{`${totalPrice} $`}</span>
       </div>
-      <div className="c_bill-price-box">
-        <span className="c_bill-price-title">Total Discount</span>
-        <span className="c_bill-price-number-discount">{`${totalDiscount} $`}</span>
-      </div>
+      {totalDiscount !== 0 && (
+        <div className="c_bill-price-box">
+          <span className="c_bill-price-title">Total Discount</span>
+          <span className="c_bill-price-number-discount">{`(${totalDisP}%) ${totalDiscount} $`}</span>
+        </div>
+      )}
       <div className="c_bill-price-box c_bill-total">
         <span className="c_bill-price-title">Final Price</span>
         <span className="c_bill-price-number">{`${finalPrice} $`}</span>

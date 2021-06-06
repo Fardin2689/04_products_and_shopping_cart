@@ -1,6 +1,6 @@
 import { Grid, Card } from '@material-ui/core';
 import { CItem, PriceBox } from '../components/checkoutItems';
-
+import EmptyCart from '../components/checkoutItems/EmptyCart';
 function ShoppingList({
   cart,
   handleAddQty,
@@ -8,6 +8,8 @@ function ShoppingList({
   handleDelItem,
   handleClearCart,
 }) {
+  if (cart.length === 0) return <EmptyCart />;
+
   return (
     <Grid container spacing={2} style={{ marginTop: 5 }}>
       <Grid item xs={12} sm={8}>
