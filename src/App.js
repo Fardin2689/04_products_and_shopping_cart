@@ -1,5 +1,5 @@
 import { Router } from '@reach/router';
-import NavBar from './components/NavBar';
+import NavBar from './components/navbar/index';
 import Details from './pages/Details';
 import Checkout from './pages/CheckoutList';
 import Home from './pages/Home';
@@ -56,7 +56,12 @@ function App() {
         overflow: 'auto',
       }}
     >
-      <NavBar cart={cart} loggedin={loggedin} setLogedin={setLogedin} />
+      <NavBar
+        cart={cart}
+        loggedin={loggedin}
+        setLogedin={setLogedin}
+        handleDelItem={handleDelItem}
+      />
       <Container component="main" maxWidth="lg">
         <Router>
           <Home path="/*from" addToCart={addToCart} loggedin={loggedin} />
